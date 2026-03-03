@@ -261,7 +261,7 @@ h1 em {
     max-width: 1200px;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 28px;
     opacity: 0;
     animation: fadeUp 0.8s 0.4s forwards;
@@ -271,7 +271,7 @@ h1 em {
 
 .destination-card {
     position: relative;
-    height: 440px;
+    height: 400px;
     border-radius: 14px;
     overflow: hidden;
     cursor: pointer;
