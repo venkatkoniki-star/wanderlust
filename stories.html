@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stories — Wanderlust</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Wanderlust</a>
+    <ul class="nav-links">
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="stories.html" class="nav-active">Stories</a></li>
+    </ul>
+    <div class="nav-auth">
+      <a href="auth.html" class="btn btn-outline">Sign In</a>
+      <a href="auth.html?mode=signup" class="btn btn-fill">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="eyebrow">Community</div>
+    <h1>Travel <em>Stories</em></h1>
+    <p class="desc">Real journeys told by real travellers. Discover the world through the eyes of those who've been there.</p>
+    <button class="btn btn-fill" id="open-story-modal" style="margin-top:8px;">+ Share Your Story</button>
+  </section>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Stories</button>
+    <button class="filter-btn" data-filter="cities">Cities</button>
+    <button class="filter-btn" data-filter="beaches">Beaches</button>
+    <button class="filter-btn" data-filter="villages">Villages</button>
+    <button class="filter-btn" data-filter="mountains">Mountains</button>
+    <button class="filter-btn" data-filter="deserts">Deserts</button>
+    <button class="filter-btn" data-filter="islands">Islands</button>
+    <button class="filter-btn" data-filter="forests">Forests</button>
+    <button class="filter-btn" data-filter="museums">Museums</button>
+  </div>
+
+  <!-- Stories Grid -->
+  <section class="stories-section">
+    <div class="stories-grid" id="stories-grid"></div>
+    <p class="no-content" id="no-stories" style="display:none;">No stories yet. Be the first to share!</p>
+  </section>
+
+  <!-- Story Detail Modal -->
+  <div class="modal-overlay" id="story-detail-modal">
+    <div class="modal modal-large">
+      <button class="modal-close" id="close-detail-modal">✕</button>
+      <div id="story-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- Write Story Modal -->
+  <div class="modal-overlay" id="story-modal">
+    <div class="modal">
+      <button class="modal-close" id="close-story-modal">✕</button>
+      <h3 class="modal-title">Share Your Story</h3>
+      <p class="modal-subtitle">Inspire fellow travellers with your journey</p>
+
+      <div class="form-group">
+        <label>Story Title</label>
+        <input type="text" id="story-title" placeholder="e.g. Two Weeks in Kyoto Changed My Life" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" id="story-dest" placeholder="e.g. Kyoto, Japan" />
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="story-cat" class="form-select">
+            <option value="cities">Cities</option>
+            <option value="beaches">Beaches</option>
+            <option value="villages">Villages</option>
+            <option value="museums">Museums</option>
+            <option value="forests">Forests</option>
+            <option value="mountains">Mountains</option>
+            <option value="islands">Islands</option>
+            <option value="deserts">Deserts</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Your Story</label>
+        <textarea id="story-body" placeholder="Tell us about your experience — what you saw, felt, discovered…" rows="6"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Cover Image URL <span class="optional">(optional)</span></label>
+        <input type="url" id="story-image" placeholder="https://..." />
+      </div>
+      <div class="form-group">
+        <label>Tags <span class="optional">(comma-separated)</span></label>
+        <input type="text" id="story-tags" placeholder="culture, food, adventure" />
+      </div>
+      <p id="story-msg" style="display:none;"></p>
+      <button class="btn btn-fill modal-submit" id="submit-story">Publish Story</button>
+    </div>
+  </div>
+
+  <script src="JS/db.js"></script>
+  <script src="JS/nav.js"></script>
+  <script src="JS/stories.js"></script>
+</body>
+</html>

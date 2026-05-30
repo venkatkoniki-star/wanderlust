@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experiences — Wanderlust</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Wanderlust</a>
+    <ul class="nav-links">
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="experiences.html" class="nav-active">Experiences</a></li>
+      <li><a href="stories.html">Stories</a></li>
+    </ul>
+    <div class="nav-auth">
+      <a href="auth.html" class="btn btn-outline">Sign In</a>
+      <a href="auth.html?mode=signup" class="btn btn-fill">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="eyebrow">Insider Knowledge</div>
+    <h1>Real <em>Experiences</em></h1>
+    <p class="desc">Practical, honest tips from travellers who've been there. Rated and reviewed by the Wanderlust community.</p>
+    <button class="btn btn-fill" id="open-exp-modal" style="margin-top:8px;">+ Add Experience</button>
+  </section>
+
+  <!-- Search + Filter -->
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <input type="text" id="exp-search" placeholder="Search by destination…" class="filter-search" />
+    </div>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="cities">Cities</button>
+    <button class="filter-btn" data-filter="beaches">Beaches</button>
+    <button class="filter-btn" data-filter="villages">Villages</button>
+    <button class="filter-btn" data-filter="mountains">Mountains</button>
+    <button class="filter-btn" data-filter="deserts">Deserts</button>
+    <button class="filter-btn" data-filter="islands">Islands</button>
+    <button class="filter-btn" data-filter="forests">Forests</button>
+    <button class="filter-btn" data-filter="museums">Museums</button>
+  </div>
+
+  <!-- Experiences List -->
+  <section class="experiences-section">
+    <div class="experiences-list" id="experiences-list"></div>
+    <p class="no-content" id="no-experiences" style="display:none;">No experiences yet. Share yours!</p>
+  </section>
+
+  <!-- Add Experience Modal -->
+  <div class="modal-overlay" id="exp-modal">
+    <div class="modal">
+      <button class="modal-close" id="close-exp-modal">✕</button>
+      <h3 class="modal-title">Add an Experience</h3>
+      <p class="modal-subtitle">Help fellow travellers with your firsthand knowledge</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" id="exp-dest" placeholder="e.g. Bali, Indonesia" />
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="exp-cat" class="form-select">
+            <option value="cities">Cities</option>
+            <option value="beaches">Beaches</option>
+            <option value="villages">Villages</option>
+            <option value="museums">Museums</option>
+            <option value="forests">Forests</option>
+            <option value="mountains">Mountains</option>
+            <option value="islands">Islands</option>
+            <option value="deserts">Deserts</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Experience Title</label>
+        <input type="text" id="exp-title" placeholder="e.g. Sunrise Trek through Ubud Rice Terraces" />
+      </div>
+      <div class="form-group">
+        <label>Your Rating</label>
+        <div class="star-rating" id="star-rating">
+          <span class="star" data-val="1">★</span>
+          <span class="star" data-val="2">★</span>
+          <span class="star" data-val="3">★</span>
+          <span class="star" data-val="4">★</span>
+          <span class="star" data-val="5">★</span>
+        </div>
+        <input type="hidden" id="exp-rating" value="5" />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="exp-body" placeholder="Describe your experience in detail…" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Insider Tips</label>
+        <textarea id="exp-tips" placeholder="What should others know before they go?" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Image URL <span class="optional">(optional)</span></label>
+        <input type="url" id="exp-image" placeholder="https://..." />
+      </div>
+      <p id="exp-msg" style="display:none;"></p>
+      <button class="btn btn-fill modal-submit" id="submit-exp">Submit Experience</button>
+    </div>
+  </div>
+
+  <script src="JS/db.js"></script>
+  <script src="JS/nav.js"></script>
+  <script src="JS/experiences.js"></script>
+</body>
+</html>

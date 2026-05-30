@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wanderlust — Destinations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Wanderlust</a>
+    <ul class="nav-links">
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="stories.html">Stories</a></li>
+    </ul>
+    <div class="nav-auth">
+      <a href="auth.html" class="btn btn-outline">Sign In</a>
+      <a href="auth.html?mode=signup" class="btn btn-fill">Sign Up</a>
+    </div>
+  </nav>
+
+  <div class="listing-page">
+    <div class="listing-header">
+      <a href="destinations.html" class="back-link">
+        ← All Destinations
+      </a>
+      <h2 id="listing-title"></h2>
+      <p id="listing-subtitle"></p>
+    </div>
+    <div class="places-grid" id="places-grid"></div>
+  </div>
+
+  <script src="JS/db.js"></script>
+  <script src="JS/nav.js"></script>
+  <script src="JS/destinations-data.js"></script>
+  <script src="JS/listing.js"></script>
+</body>
+</html>

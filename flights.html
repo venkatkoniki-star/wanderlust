@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Flights — Wanderlust</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Wanderlust</a>
+    <ul class="nav-links">
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="stories.html">Stories</a></li>
+    </ul>
+    <div class="nav-auth">
+      <a href="auth.html" class="btn btn-outline">Sign In</a>
+      <a href="auth.html?mode=signup" class="btn btn-fill">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="flights-hero">
+    <div class="eyebrow">Flight Search</div>
+    <h1>Find Your <em>Flight</em></h1>
+    <p class="desc">Search real-time flights powered by Amadeus. Compare routes, dates and prices for your next adventure.</p>
+  </section>
+
+  <!-- API Key Notice -->
+  <div class="api-notice" id="api-notice">
+    <div class="api-notice-inner">
+      <span class="api-notice-icon">🔑</span>
+      <div>
+        <strong>Amadeus API Setup Required</strong>
+        <p>To search live flights, enter your free Amadeus API credentials below. Get them free at <a href="https://developers.amadeus.com" target="_blank">developers.amadeus.com</a> — takes 2 minutes.</p>
+      </div>
+      <button class="btn btn-outline" id="setup-api-btn" style="flex-shrink:0;">Configure API</button>
+    </div>
+  </div>
+
+  <!-- API Config Panel -->
+  <div class="api-config-panel" id="api-config-panel" style="display:none;">
+    <div class="api-config-inner">
+      <h4>Amadeus API Credentials</h4>
+      <p>Your credentials are stored locally on your device only.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Client ID (API Key)</label>
+          <input type="text" id="amadeus-client-id" placeholder="Your Amadeus Client ID" />
+        </div>
+        <div class="form-group">
+          <label>Client Secret</label>
+          <input type="password" id="amadeus-client-secret" placeholder="Your Amadeus Client Secret" />
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-fill" id="save-api-btn">Save Credentials</button>
+        <button class="btn btn-outline" id="cancel-api-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Form -->
+  <section class="flights-search-section">
+    <div class="flights-form-card">
+
+      <!-- Trip type -->
+      <div class="trip-type-tabs">
+        <button class="trip-tab active" data-type="one-way">One Way</button>
+        <button class="trip-tab" data-type="round-trip">Round Trip</button>
+      </div>
+
+      <div class="flights-form-grid">
+        <div class="form-group flight-field">
+          <label>From</label>
+          <div class="airport-input-wrap">
+            <input type="text" id="from-input" placeholder="City or airport code" autocomplete="off" />
+            <div class="airport-suggestions" id="from-suggestions"></div>
+          </div>
+          <input type="hidden" id="from-iata" />
+        </div>
+
+        <button class="swap-btn" id="swap-btn" title="Swap">⇄</button>
+
+        <div class="form-group flight-field">
+          <label>To</label>
+          <div class="airport-input-wrap">
+            <input type="text" id="to-input" placeholder="City or airport code" autocomplete="off" />
+            <div class="airport-suggestions" id="to-suggestions"></div>
+          </div>
+          <input type="hidden" id="to-iata" />
+        </div>
+
+        <div class="form-group">
+          <label>Departure</label>
+          <input type="date" id="depart-date" />
+        </div>
+
+        <div class="form-group" id="return-group" style="display:none;">
+          <label>Return</label>
+          <input type="date" id="return-date" />
+        </div>
+
+        <div class="form-group">
+          <label>Passengers</label>
+          <select id="passengers" class="form-select">
+            <option value="1">1 Adult</option>
+            <option value="2">2 Adults</option>
+            <option value="3">3 Adults</option>
+            <option value="4">4 Adults</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Cabin Class</label>
+          <select id="cabin-class" class="form-select">
+            <option value="ECONOMY">Economy</option>
+            <option value="PREMIUM_ECONOMY">Premium Economy</option>
+            <option value="BUSINESS">Business</option>
+            <option value="FIRST">First Class</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-fill flights-search-btn" id="search-flights-btn">
+        <span id="search-btn-text">Search Flights</span>
+        <span id="search-spinner" style="display:none;">Searching…</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="flights-results-section" id="results-section" style="display:none;">
+    <div class="results-header">
+      <h3 id="results-title"></h3>
+      <div class="results-sort">
+        <label>Sort by:</label>
+        <select id="sort-select" class="form-select" style="padding:8px 14px;">
+          <option value="price">Price</option>
+          <option value="duration">Duration</option>
+        </select>
+      </div>
+    </div>
+    <div id="flights-list"></div>
+    <p class="no-content" id="no-flights" style="display:none;">No flights found for these dates. Try adjusting your search.</p>
+  </section>
+
+  <!-- Error -->
+  <div class="flight-error" id="flight-error" style="display:none;"></div>
+
+  <!-- Popular Routes -->
+  <section class="popular-routes">
+    <h3>Popular <em>Routes</em></h3>
+    <div class="routes-grid" id="routes-grid"></div>
+  </section>
+
+  <script src="JS/db.js"></script>
+  <script src="JS/nav.js"></script>
+  <script src="JS/flights.js"></script>
+</body>
+</html>
